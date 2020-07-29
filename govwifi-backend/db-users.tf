@@ -9,7 +9,8 @@ resource "aws_db_instance" "users_db" {
   apply_immediately           = true
   instance_class              = "${var.user-db-instance-type}"
   identifier                  = "wifi-${var.env}-user-db"
-  name                        = "govwifi_${var.env}_users"
+  // the below line is needed to support environments with hyphens in the name
+  name                        = "${replace(format("%s%s%s", "govwifi_", var.env, "_users"), "-", "_")}"
   username                    = "${var.user-db-username}"
   password                    = "${var.user-db-password}"
   backup_retention_period     = "${var.db-backup-retention-days}"
