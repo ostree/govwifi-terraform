@@ -8,7 +8,7 @@ resource "aws_db_instance" "users_db" {
   allow_major_version_upgrade = false
   apply_immediately           = true
   instance_class              = "${var.user-db-instance-type}"
-  identifier                  = "wifi-${var.env}-user-db"
+  identifier                  = "wifi-${var.env}-user-db" // var.env is set to 'staging' at the moment. should it be `staging-temp`?
   // the below line is needed to support environments with hyphens in the name
   name                        = "${replace(format("%s%s%s", "govwifi_", var.env, "_users"), "-", "_")}"
   username                    = "${var.user-db-username}"
@@ -65,4 +65,6 @@ resource "aws_db_instance" "users_read_replica" {
   tags = {
     Name = "${title(var.Env-Name)} DB Read Replica"
   }
+# TODO enable this for Ireland and London
+//  kms_key_id = "${var.rds-kms-key-id}"
 }

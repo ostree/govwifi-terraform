@@ -114,3 +114,9 @@ variable "user-replica-source-db" {
   type    = "string"
   default = ""
 }
+
+# TODO enable this for Ireland and London
+//variable "rds-kms-key-id" {
+//  description = "The KMS key necessary to encrypt the replica database"
+//  type        = "string"
+//}
