@@ -133,4 +133,5 @@ resource "aws_security_group" "fe-radius-in" {
 
 data "aws_ip_ranges" "route53_healthcheck" {
   services = ["route53_healthchecks"]
+  regions  = ["${var.aws-region}"]
 }
